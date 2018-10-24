@@ -13,9 +13,9 @@ if(!$_SESSION["E_MAIL"])
 	//$user ="avinash";
 	$date = date('Y-m-d H:i:s');
 
-	mysqli_query($conn,"INSERT INTO `todotable` (`list`, `todoDate`, `uploadedBy`) VALUES ('$dataList', '$date', '$user');");
-
-	header("Location:todolist.html");
+	$result=mysqli_query($conn,"INSERT INTO `todotable` (`list`, `todoDate`, `uploadedBy`) VALUES ('$dataList', '$date', '$user')");
+	
+	header("Location:todolist.php");
 	}
 
 ?>
