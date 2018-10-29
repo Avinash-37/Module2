@@ -8,16 +8,17 @@
 <link rel="stylesheet" type="text/css" href="./css/style.css"/>
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link href = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
 
 </head>
 <body>
 
 <div class="container" align="center">
-	<div class="row" >
-        <h1 >Human Cloud Solution</h1><hr />
+	<div class="row" align="center">
+        <h1 >Human Cloud Solution</h1>
          <form action="login.php" method="post">
-            <div class="login-container">	
+            <div class="login-container">
                 <div class="imgcontainer">
                     <img src="image/profile.png" alt="Profile Picture" class="profile_image">
                   </div>
@@ -28,13 +29,9 @@
                 <input type = "password" name = "password"  placeholder="Enter your password" required/><br/><br /><br /><br />
                 
                   <button type="submit" class="btn btn-success btn-block btn-lg">Login</button><br /><br />
-		 </form> 
-			<p class="loginhere">
-                        Don't Have an account ? <a href="signup.html" class="SignUp here-link">Login here</a>
-                    </p>             
-		</div>
-       
-		
+              </div>
+        </form>
+
 		</div>
 	</div>
  	
