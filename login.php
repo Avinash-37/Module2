@@ -7,9 +7,9 @@ $username = $_REQUEST["username"];
 $password = $_REQUEST["password"];
 //$username = "avinashk.meshram@gmail.com";
 //$password = "avi1231";
-//$EncryptPassword = md5($password);
+$EncryptPassword = md5($password);
 
-$res=mysqli_query($conn,"SELECT * FROM `user_lgin` WHERE email='$username' AND password='$password'"); 
+$res=mysqli_query($conn,"SELECT * FROM `user_lgin` WHERE email='$username' AND password='$EncryptPassword'"); 
 
 
 	if(mysqli_num_rows($res) > 0 )

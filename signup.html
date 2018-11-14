@@ -26,7 +26,7 @@
 	               	</div>
 	            </div> 
 		<div class="login-container">
-                    <form method="POST" id="signup-form" class="signup-form">
+               <form method="POST" id="signup-form" class="signup-form" action="request_api_for_registration.php">
                         <h2 class="form-title">Create account</h2>
                         <div class="form-group">
                             <input type="text" class="form-input" name="name" id="name" placeholder="Your Name"/>
@@ -34,19 +34,24 @@
                         <div class="form-group">
                             <input type="text" class="form-input" name="email" id="email" placeholder="Your Email"/>
                         </div>
+			<div class="form-group">
+                            <input type="text" class="form-input" name="mobile" id="mobile" placeholder="Your Mobile Number"/>
+                        </div>
+			<div class="form-group">
+                            <input type="text" class="form-input" name="company" id="company" placeholder="Your Company Name"/>
+                        </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
-                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            <input type="text" class="form-input" name="passwd" id="passwd" placeholder="Password"/>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
                             <label for="agree-term" class="label-agree-term">I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" name="submit" id="submit" value="Sign up">Sign up</button>
+                            <button type="submit" class="btn btn-success btn-block btn-lg" name="submit" id="submit" value="submit">Sign up</button>
                         </div>
                     </form>
                     <p class="loginhere">
@@ -56,13 +61,11 @@
             </div>
 	</div>
 </div>
-
 <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 	</body>
 
-</html>
+</html> 

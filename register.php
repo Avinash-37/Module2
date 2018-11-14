@@ -1,45 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width = device-width, initial-scale = 1">
-<title>Avinash|Testing data</title>
-<link rel="stylesheet" type="text/css" href="./css/style.css"/>
-<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link href = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
+<?php
+include 'dbconfig.php';
+session_start();
 
-</head>
-<body>
-
-<div class="container" align="center">
-	<div class="row" align="center">
-        <h1 >Human Cloud Solution</h1>
-         <form action="login.php" method="post">
-            <div class="login-container">
-                <div class="imgcontainer">
-                    <img src="image/profile.png" alt="Profile Picture" class="profile_image">
-                  </div>
-    			<br />
-                <label for="username">UserName  </label><br />
-                <input type = "text" name = "username"  placeholder="Enter user name" required/><br /><br /><br /><br />
-                  <label for="password">Password  </label><br/>
-                <input type = "password" name = "password"  placeholder="Enter your password" required/><br/><br /><br /><br />
-                
-                  <button type="submit" class="btn btn-success btn-block btn-lg">Login</button><br /><br />
-              </div>
-        </form>
-
-		</div>
-	</div>
- 	
-
-     <script src="./js/scripts.js"></script>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	$name = $_REQUEST["name"];
+	$email = $_REQUEST["email"];
+	$mobile = $_REQUEST["mobile"];
+	$company = $_REQUEST["company"];
+	$password = $_REQUEST["passwd"];
+	$re_password = $_REQUEST["re_password"];
+	$EncryptPassword = md5($password);
+	$res=mysqli_query($conn,"INSERT INTO `user_lgin` (`id`, `name`, `email`, `mobile`, `company`, `password`) VALUES (NULL, '$name', '$email', '$mobile', '$company', '$EncryptPassword')"); 
 
 
-</body>
-</html>
+	if(!empty($res))
+	{
+		?>
+		<script type="text/javascript">
+		alert("Account created Successfully");
+		window.location.assign("index.html")
+		</script>
+		<?php	
+	}
+	else
+	{
+		?>
+		<script type="text/javascript">
+		alert("Please Enter correct value");
+		history.back();
+		</script>
+		<?php
+	}
+
+ ?>
+
+
+

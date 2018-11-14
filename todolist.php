@@ -1,6 +1,7 @@
 <?php
 include 'dbconfig.php';
 session_start();
+$email=$_SESSION["E_MAIL"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,54 +62,54 @@ function createInstance()
 				}	
 			} 
 		}; 
-		req.open("GET", "displayData.php", true);
+		req.open("GET", "AllDay.php", true);
 		req.send(); 
 	} 
 //used for display yesterday data..............
 function yesterday()
-{
-var xmlhttp;
-if(window.XMLHttpRequest)
-{
-// code for IE7+, Firefox, Chrome, Opera, Safari
-xmlhttp=new XMLHttpRequest();
-}
-else
-{// code for IE6, IE5
-xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-xmlhttp.onreadystatechange=function()
-{
-if (xmlhttp.readyState==4 && xmlhttp.status==200)
-{
-document.getElementById("displayData").innerHTML=xmlhttp.responseText;
-}
-}
-xmlhttp.open("GET","yesterday.php",true);
-xmlhttp.send();
+		{
+		var xmlhttp;
+		if(window.XMLHttpRequest)
+		{
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		document.getElementById("displayData").innerHTML=xmlhttp.responseText;
+		}
+		}
+		xmlhttp.open("GET","yesterday.php",true);
+		xmlhttp.send();
 }
 //used for display today data
 function aajkaKam()
 {
-var xmlhttp;
-if(window.XMLHttpRequest)
-{
-// code for IE7+, Firefox, Chrome, Opera, Safari
-xmlhttp=new XMLHttpRequest();
-}
-else
-{// code for IE6, IE5
-xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-xmlhttp.onreadystatechange=function()
-{
-if (xmlhttp.readyState==4 && xmlhttp.status==200)
-{
-document.getElementById("displayData").innerHTML=xmlhttp.responseText;
-}
-}
-xmlhttp.open("GET","Today.php",true);
-xmlhttp.send();
+		var xmlhttp;
+		if(window.XMLHttpRequest)
+		{
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		document.getElementById("displayData").innerHTML=xmlhttp.responseText;
+		}
+		}
+		xmlhttp.open("GET","Today.php",true);
+		xmlhttp.send();
 }
 </script>
 </head>
@@ -128,6 +129,18 @@ xmlhttp.send();
 				<h2>List</h2>
 				<ul id="myTodayList">
 				<?php
+				$jsondata = file_get_contents('http://localhost/Module2/api/todayList.php');
+						$json = json_decode($jsondata,true);
+						$output ="<ul>";
+						foreach($json['records'] as $a)
+						{
+						$output .="<li><h4>".$a['list']."</h4></li>";
+						}	
+						$output .="</ul>";
+						echo $output;
+				?>	
+<!--
+				<?php
 				$email=$_SESSION["E_MAIL"];
 				$date = date('Y-m-d');
 				$res=mysqli_query($conn,"SELECT * FROM `todotable` WHERE uploadedBy='$email' AND todoDate='$date' ORDER by time DESC LIMIT 0,10");
@@ -144,6 +157,7 @@ xmlhttp.send();
 						}
 					}	
 				?>
+-->
 			
 					</ul>
 				<br>
@@ -161,7 +175,24 @@ xmlhttp.send();
 
 					    </div>
 					<div id="displayData" class="displayData">
+						<?php	
+						//Send request to API for getting data
+						$jsondata = file_get_contents('http://localhost//Module2/api/read.php');
+						$json = json_decode($jsondata,true);
+						echo "<h3>Working List</h3>";
+						$output ="<ul>";
+						//foreach is use for print all value in list
+						foreach($json['records'] as $a)
+						{
+						$output .="<li><h6>".$a['list'].$a['todoDate'].$a['time'].$a['uploadedBy']."</h6></li>";
+	
+						}
+							
+						$output .="</ul>";
+						echo $output;		
 
+						?>
+					
 					</div>
 				    </div>
 				</div>
