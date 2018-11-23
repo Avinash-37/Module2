@@ -26,12 +26,12 @@ $product->time = $data->time;
 // delete the product
 if($product->delete()){
     http_response_code(200);
-    echo json_encode(array("message" => "Product was deleted."));
+    echo json_encode(array("message" => "Task was deleted."));
 }
  
 // if unable to delete the product
 else{
     http_response_code(503);
-    echo json_encode(array("message" => "Unable to delete product."));
+    echo json_encode(array("message" => "Unable to delete Task."));
 }
 ?>
