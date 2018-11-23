@@ -1,6 +1,6 @@
 <?php
-session_start();
-$email=$_SESSION["E_MAIL"];
+//session_start();
+//$email=$_SESSION["E_MAIL"];
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -56,7 +56,7 @@ else{
  
     // tell the user no products found
     echo json_encode(
-        array("message" => "No products found.")
+        array("message" => "Task Not found.")
     );
 }
 ?>

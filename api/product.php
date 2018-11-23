@@ -125,23 +125,15 @@ function delete(){
 function readOne(){
  
     // query to read single record
-    $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
-            WHERE
-                p.id = ?
-            LIMIT
-                0,1";
+    $query = "SELECT * FROM
+                " . $this->table_name . " WHERE
+                uploadedBy = 'avinashk.meshram@gmail.com'";
  
     // prepare query statement
     $stmt = $this->conn->prepare( $query );
  
     // bind id of product to be updated
-    $stmt->bindParam(1, $this->id);
+    //$stmt->bindParam(1, $this->id);
  
     // execute query
     $stmt->execute();
@@ -150,11 +142,11 @@ function readOne(){
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
     // set values to object properties
-    $this->name = $row['name'];
-    $this->price = $row['price'];
-    $this->description = $row['description'];
-    $this->category_id = $row['category_id'];
-    $this->category_name = $row['category_name'];
+    $this->lists = $row['worklist'];
+    $this->todoDate = $row['todoDate'];
+    $this->time = $row['time'];
+    $this->uploadedBy = $row['uploadedBy'];
+    $this->status = $row['status'];
 }
 
 // ****************************************************************update the product
@@ -164,29 +156,29 @@ function update(){
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                name = :name,
-                price = :price,
-                description = :description,
-                category_id = :category_id
+                lists = :lists,
+                todoDate = :todoDate,
+                uploadedBy= :uploadedBy,
+		status = :status
             WHERE
-                id = :id";
+                time = :time";
  
     // prepare query statement
     $stmt = $this->conn->prepare($query);
  
     // sanitize
-    $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->description=htmlspecialchars(strip_tags($this->description));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-    $this->id=htmlspecialchars(strip_tags($this->id));
+    $this->lists=htmlspecialchars(strip_tags($this->lists));
+    $this->todoDate=htmlspecialchars(strip_tags($this->todoDate));
+    $this->uploadedBy=htmlspecialchars(strip_tags($this->uploadedBy));
+    $this->time=htmlspecialchars(strip_tags($this->time));
+    $this->status=htmlspecialchars(strip_tags($this->status));
  
     // bind new values
-    $stmt->bindParam(':name', $this->name);
-    $stmt->bindParam(':price', $this->price);
-    $stmt->bindParam(':description', $this->description);
-    $stmt->bindParam(':category_id', $this->category_id);
-    $stmt->bindParam(':id', $this->id);
+    $stmt->bindParam(':lists', $this->lists);
+    $stmt->bindParam(':todoDate', $this->todoDate);
+    $stmt->bindParam(':uploadedBy', $this->uploadedBy);
+    $stmt->bindParam(':time', $this->time);
+    $stmt->bindParam(':status', $this->status);
  
     // execute the query
     if($stmt->execute()){

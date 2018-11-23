@@ -1,6 +1,6 @@
 <?php
-session_start();
-$login_email=$_SESSION["E_MAIL"];
+//session_start();
+//$login_email=$_SESSION["E_MAIL"];
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,8 +18,8 @@ $product = new Product($db);
 
 // get posted data
 //$data = json_decode(file_get_contents("php://input"));
-//$data->email="avinashk.meshram@gmail.com";
-$data ->email =$login_email;
+$data->email="avinashk.meshram@gmail.com";
+//$data ->email =$login_email;
 $product->uploadedBy = $data->email;
 // query products
 $stmt = $product->todaylist();
