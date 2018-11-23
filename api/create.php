@@ -34,17 +34,17 @@ if(!empty($data->worklist) && !empty($data->uploadedBy))
     // create the product
     if($product->create()){
         http_response_code(201);
-        echo json_encode(array("message" => "Product was created."));
+        echo json_encode(array("message" => "Task was created."));
     }
     // if unable to create the product, tell the user
     else{
         http_response_code(503);
-        echo json_encode(array("message" => "Unable to create product."));
+        echo json_encode(array("message" => "Unable to create Task."));
     }
 }
 else{
     http_response_code(400);
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create Task. Data is incomplete."));
 }
 
 ?>
