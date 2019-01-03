@@ -1,8 +1,8 @@
 <?php
 $username = "root";
-$password = "root";
+$password = "avi123";
 $database = "aviDB";
-$server ="localhost";
+$server ="35.200.214.15";
 
 $conn=mysqli_connect($server,$username,$password,$database);
 
